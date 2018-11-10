@@ -1,0 +1,44 @@
+<nav>
+
+    <div class="nav-wrapper breadcrumb" style="padding-right: 25px; padding-left: 25px;">
+
+        <div class="col s12">
+            <a href="<?php echo APP_URL."transacciones/"; ?>" class="breadcrumb">Lista de transacciones</a>
+            <a href="<?php echo APP_URL."cuentas/"; ?>" class="breadcrumb">Ver cuentas</a>
+            <a href="<?php echo APP_URL."cuentas/agregar"; ?>" class="breadcrumb">Agregar cuenta</a>
+        </div>
+        
+    </div>
+
+</nav>
+
+<div class="row">
+
+	<div class="col-sm-12">
+
+		<h3>Agregar cuenta</h3>
+
+        <hr>
+
+        <br>
+
+        <div class="row">
+
+            <form action="<?php echo APP_URL."cuentas/agregar"; ?>" method="POST">
+
+                <div class="input-field col s12">
+
+                    <input type="text" name="name" class="form-control" required>
+                    <label>Nombre</label>
+
+                </div>
+
+            <input type="submit" class="btn btn-primary" value="Guardar cuenta" style="background-color: #0069D9;">
+
+            </form> 
+
+        </div>
+
+    <div>
+
+</div>
