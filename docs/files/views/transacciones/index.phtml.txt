@@ -1,0 +1,95 @@
+<nav>
+
+	<div class="nav-wrapper breadcrumb" style="padding-right: 25px; padding-left: 25px;">
+
+		<div class="col s12">
+			<a href="<?php echo APP_URL."transacciones/"; ?>" class="breadcrumb">Lista de transacciones</a>
+		</div>
+		
+	</div>
+
+</nav>
+
+<div class="row">
+
+	<div class="col-sm-12">
+
+		<h3>Lista de transacciones</h3>
+
+		<a class="waves-effect waves-light btn" style="background-color: #0069D9;" href="<?php echo APP_URL."transacciones/agregar"; ?>">Agregar transacción</a>
+
+		<a class="waves-effect waves-light btn" style="background-color: #0069D9;" href="<?php echo APP_URL."cuentas/"; ?>">Ver cuentas</a>
+
+		<a class="waves-effect waves-light btn" style="background-color: #0069D9;" href="<?php echo APP_URL."categorias/"; ?>">Ver categorías</a>
+
+		<br>
+		<br>
+
+		<hr>
+
+		<div>
+
+			<table class="striped responsive-table">
+
+				<tr>
+					<th>ID</th>
+                    <th>Cuenta</th>
+                    <th>Categoria</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Cantidad</th>
+                    <th>Acción</th>
+				</tr>
+				
+				<?php foreach ($this->transacciones as $transaccion): ?>
+
+                    <tr>
+
+                        <td><?php echo $transaccion["t"]["id"]; ?></td>
+                        <td><?php echo $transaccion["a"]["name"]; ?></td>
+                        <td><?php echo $transaccion["c"]["name"]; ?></td>
+                        <td><?php echo $transaccion["t"]["description"]; ?></td>
+                        <td>
+							<?php
+                            $date = new DateTime($transaccion["t"]["date"]);
+                            echo $date->format('d/m/Y');
+                            ?>
+						</td>
+                        <td>$<?php echo $transaccion["t"]["amount"]; ?></td>
+                        <td> 
+							
+							<a href="<?php echo APP_URL."transacciones/editar/".$transaccion["t"]["id"]; ?>"><i class="waves-effect waves-light btn-small" style="background-color: #E2E6EA;">Editar</i></a>
+
+							|
+
+                            <a href="<?php echo APP_URL."transacciones/eliminar/".$transaccion["t"]["id"]; ?>"><button type="button" class="btn btn-secondary btn-small confirmation" style="background-color: #C82333;">Eliminar</button></a>
+                            
+							<?php
+							
+								if ($transaccion["t"]["amount"]==1){ 
+								
+							?>
+                            
+							<a href="<?php echo APP_URL."tareas/cambiarEstado/".$transaccion["t"]["id"]."/off"; ?>"><span class="glyphicon glyphicon-ok"></span></a>
+							
+						</td>
+
+						<?php  }
+						
+							elseif ($transaccion["t"]["amount"]==0){ 
+							
+						?>
+                            <a href="<?php echo APP_URL."tareas/cambiarEstado/".$transaccion["t"]["id"]."/on"; ?>"><span class="glyphicon glyphicon-remove"></span></a></td>
+                        
+						<?php  } ?>
+
+                    </tr>
+					
+                <?php endforeach; ?>
+			
+			</table>
+
+	</div>
+
+</div>
+
